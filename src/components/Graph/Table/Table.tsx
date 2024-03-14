@@ -36,7 +36,7 @@ const Table = ({ months, weeks, maxCommits }: TableType) => {
             {weekDay.map((day, dayNumber) => (
               <td key={dayNumber}>
                 <FadeIn delay={0.4 + (0.02 * dayNumber) + (0.06 * weekDayIndex)} duration={0.6}>
-                  <Contribution color={getCommitColor(day.commits, maxCommits)} />
+                  <Contribution commits={day.commits} color={getCommitColor(day.commits, maxCommits)} date={day.date} />
                 </FadeIn>
               </td>
             ))}

@@ -1,8 +1,13 @@
+import { Tooltip } from '@mui/material';
 import { CONTRIBUTION_COLOR } from '../../../enums/contributions';
 import { Wrapper } from './styles';
 import { ContributionType } from './types';
+import daysNames from '../../../constants/daysNames';
 
-const Contribution = ({ color }: ContributionType) => {
+const Contribution = ({ color, date, commits }: ContributionType) => {
+  const dateFormat = new Date(date);
+  const dayOfWeek = daysNames[dateFormat.getDay()];
+  const dayOfMonth = dateFormat.getDate();
 
   const getOpacity = () => {
     switch (color) {
@@ -20,7 +25,9 @@ const Contribution = ({ color }: ContributionType) => {
   }
 
   return (
-    <Wrapper opacity={getOpacity()} />
+    <Tooltip title={`${dayOfMonth} ${dayOfWeek} | ${commits} Commits`} arrow>
+      <Wrapper opacity={getOpacity()} />
+    </Tooltip>
   );
 }
 
