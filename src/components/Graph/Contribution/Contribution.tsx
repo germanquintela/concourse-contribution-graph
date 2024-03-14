@@ -5,10 +5,6 @@ import { ContributionType } from './types';
 import daysNames from '../../../constants/daysNames';
 
 const Contribution = ({ color, date, commits }: ContributionType) => {
-  const dateFormat = new Date(date);
-  const dayOfWeek = daysNames[dateFormat.getDay()];
-  const dayOfMonth = dateFormat.getDate();
-
   const getOpacity = () => {
     switch (color) {
       case CONTRIBUTION_COLOR.DARKEST:
@@ -24,10 +20,20 @@ const Contribution = ({ color, date, commits }: ContributionType) => {
     }
   }
 
+  if (date && commits) {
+    const dateFormat = new Date(date);
+    const dayOfWeek = daysNames[dateFormat.getDay()];
+    const dayOfMonth = dateFormat.getDate();
+
+    return (
+      <Tooltip title={`${dayOfMonth} ${dayOfWeek} | ${commits} Commits`} arrow>
+        <Wrapper opacity={getOpacity()} />
+      </Tooltip>
+    )
+  }
+
   return (
-    <Tooltip title={`${dayOfMonth} ${dayOfWeek} | ${commits} Commits`} arrow>
-      <Wrapper opacity={getOpacity()} />
-    </Tooltip>
+    <Wrapper opacity={getOpacity()} />
   );
 }
 
