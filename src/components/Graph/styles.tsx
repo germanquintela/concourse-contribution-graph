@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
 
-export const Wrapper = styled('div')(({ theme }) => ({
+export const Wrapper = styled('div')(() => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-end",
@@ -20,7 +20,7 @@ export const TableWrapper = styled('div')(({ theme }) => ({
   },
 }));
 
-export const ReferenceWrapper = styled('div')(({ theme }) => ({
+export const ReferenceWrapper = styled('div')(() => ({
   display: "flex",
   alignItems: "center",
 
